@@ -8,10 +8,10 @@ baseLine은 여러개가 입력된다. 이를 어떻게 받을 것인가. -> br.
 각각의 Integer.parseInt(br.readLine()) 을 1의 메소드가 있는 클래스의 객체에 인수로 넣자.
 */
 
-import java.io.IOException;
 import java.io.BufferedReader;
-import java.io.InputStreamReader;
 import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 
 class Calculate{
@@ -27,21 +27,28 @@ class Calculate{
 		if(a == 0){
 			return sum;
 		}
-		result(a-1);
+		return(result(a-1));
 	}
 
 }
 
 public class Pyramids3{
 	public static void main(String[]args) throws IOException{
-		BufferedReader br = new BufferdReader(new InputStreamReader(System.in));
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-		int a = 0;
-		do{
-			a = Integer.ParseInt(br.readLine);
-			Calculate cc = new Calculate(a);
-			bw.write(String.valueOf(cc.result));
-        } while (a != 0);
+		while (true) {
+        int a = Integer.parseInt(br.readLine());
+        
+        // 0이 입력되면 즉시 루프를 탈출한다.
+        if (a == 0) {
+            break;
+        }
+        
+        // 0이 아닌 경우에만 계산하고 출력한다.
+        Calculate cc = new Calculate();
+        bw.write(String.valueOf(cc.result(a)));
+        bw.newLine();
+    }// 더 나은 로직 알아보기
 		bw.close();
 		br.close();
 }
